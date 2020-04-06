@@ -1,0 +1,19 @@
+{
+  "logger": {
+    "title": "Remote Sync"
+  },
+  "uploadOnSave": true,
+  "useAtomicWrites": false,
+  "deleteLocal": false,
+  "hostname": "172.20.10.12",
+  "port": "22",
+  "target": "/home/osboxes/test-project/exercise_0_pingtest",
+  "ignore": [
+    ".remote-sync.json",
+    ".git/**"
+  ],
+  "username": "osboxes",
+  "password": "osboxes.org",
+  "watch": [],
+  "transport": "scp"
+}
