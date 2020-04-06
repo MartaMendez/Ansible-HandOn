@@ -1,0 +1,4 @@
+# Variable file for firewall sample
+http_port: 8081/tcp
+smnp_port: 161-162
+inter_ip_range: 190.0.2.0

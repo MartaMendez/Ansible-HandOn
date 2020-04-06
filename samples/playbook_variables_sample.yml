@@ -1,0 +1,10 @@
+# stores information that varies with each hosts
+-
+  name: Play1
+  hosts: localhosts
+  vars:
+    dns_server: 10.1.250.10
+  tasks:
+    - lineinfile:
+      path: /etc/resolv.conf
+      line: 'nameserver {{dns_server}}'

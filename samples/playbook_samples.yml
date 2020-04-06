@@ -1,0 +1,30 @@
+-
+  name: Play1
+  hosts: localhosts
+  # vars:
+    # dns_server:
+  tasks:
+    # different ways of execting commands
+    - name: execute command 'date'
+      command: date
+    - name: Display resolv.conf contents
+      command: cat /etc/resolv.conf
+    - name: Display resolv.conf contents
+      command: cat resolv.conf chdir=/etc
+    - name: Display resolv.conf contents
+      command: mkdir /folder creates=/folder
+    # another module: script, ir executes a script on remote nodes
+    - name: Run a script on a remote node
+      script: /some/local/script.sh -arg1 -arg2
+-
+  name: Manage database servers
+  hosts: db_servers
+  tasks:
+    # service module: start/stop/restart services
+    - name: Start the database server
+      service:
+        name: postgresql
+        # IDEMPOTENCY
+        # if server is not already started, start it
+        # if server is already started, do not do anything
+        state: started
