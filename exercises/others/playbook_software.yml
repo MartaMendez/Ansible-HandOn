@@ -1,0 +1,19 @@
+# Several packages installations according to OS
+-
+  name: Install software
+  hosts: Install
+  vars:
+    packages:
+      - name: nginx
+        required: true
+      - name: mysql
+        required: true
+      - name: apache
+        required: False
+  tasks:
+    - name: Install "{{ item.name }}" on Debian
+      apt:
+        name: "{{ item.name }}"
+        state: present
+      when: item.required == True
+      loop: "{{ packages }}"

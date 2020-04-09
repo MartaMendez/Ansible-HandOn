@@ -1,0 +1,19 @@
+# Case: same playbook different severs
+# Base on the OS, playbook must run one task or another ->when statement
+-
+  name: Install NGINX
+  hosts: all
+  tasks:
+      - name: Install NGINX on Debian
+        apt:
+            name: NGINX
+            state: present
+        when: ansible_os_family == "Debian"  and
+              ansible_distribution_version == "16.04"
+
+      - name: Install NGINX on Redhat
+        yum:
+            name: NGINX
+            state: present
+        when: ansible_os_family == "RedHat" or
+              ansible_os_family == "SUSE"

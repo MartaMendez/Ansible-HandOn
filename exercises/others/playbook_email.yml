@@ -1,0 +1,15 @@
+# Let's check the status of an email service
+-
+  name: Check status of a service and email if its down
+  hosts: localhosts
+  tasks:
+    - command: service htppd status
+      # output of command is save in result variable, using register command
+      register: result
+
+    - mail:
+        to: admin@company.command
+        subject: Service Alert
+        body: Httpd Service is down
+        # find method returns substring position, if it's not found it returns -1
+        when: result.stdout.find('down') != -1

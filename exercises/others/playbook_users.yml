@@ -1,0 +1,38 @@
+# user module helps to create users, if we need to create several users, we should use a loop
+# over a variable list
+-
+  name: Create users
+  hosts: localhosts
+  tasks:
+    - user:
+        name: {{ item.name }}
+        state: present
+        uid: {{ item.uid }}
+
+      # loop and with_items have the same functionality
+      # with_items:
+      # with_files iterates over multiple files
+      # with_url iterates over multiple urls
+      # wit_mongodb whiichiterates over multiple mongodb databases
+      loop:
+        # item is the value of each item in the loop list
+        #- joe
+        #- george
+        #- ravi
+        #- mani
+        #- kiran
+        #- mike
+        # item can have two values: user name and user id, in that case, they should
+        # be passed as a dictionary instead of as an array
+        - name: joe
+          uid: 1010
+        - name: george
+          uid: 10101
+        - name: ravi
+          uid: 1012
+        - name: mani
+          uid: 1013
+        - name: kiran
+          uid: 1014
+        - name: mike
+          uid: 1015
