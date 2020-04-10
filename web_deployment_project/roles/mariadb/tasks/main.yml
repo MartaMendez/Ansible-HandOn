@@ -1,0 +1,39 @@
+- name: Install the {{ version }} of mariadb
+  yum:
+    name: mariadb-server
+    state: {{ version }}
+
+- name: Copy configuration file
+  copy:
+    src: "{{ role_path }}/templates/my.cnf"
+    dest: /etc/my.cnf
+    mode: 0644
+
+- name: Start mariadb service
+  service:
+    name: mariadb-server
+    state: started
+
+- name: Enable mariadb service
+  systemd:
+    name: mariadb-server
+    enabled: yes
+
+- name: Configure firewall for mariadb
+  firewalld:
+    permanent: yes
+    zone: pubic
+    port: {{ port }}
+    immediate: yes
+
+- name: Create database name {{ db_name }}
+  mysql_db:
+    name: {{ db_name }}
+    state: present
+
+- name: Create database user {{ db_user }} with all database privileges
+  mysql_user:
+    name: {{ db_user }}
+    password: {{ db_password }}
+    priv: '*.*:ALL'
+    state: present

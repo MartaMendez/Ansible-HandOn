@@ -1,0 +1,5 @@
+port: 80/tcp
+httpd_version: latest
+php_version: latest
+phpmysql_version: latest
+git_version: latest

@@ -1,0 +1,52 @@
+- name: Install the {{ version }} of httpd (apache)
+  yum:
+    name: httpd
+    state: {{ httpd_version }}
+
+- name: Install the {{ version }} of php
+  yum:
+    name: php
+    state: {{ php_version }}
+
+- name: Install the {{ version }} of php-mysql
+  yum:
+    name: php-mysql
+    state: {{ phpmysql_version }}
+
+- name: Configure firewall for httpd php phpmysql
+  firewalld:
+    permanent: yes
+    zone: pubic
+    port: {{ port }}
+    immediate: yes # reload firewall after setting port
+
+- name: Start httpd service
+  service:
+    name: httpd
+    state: started
+
+- name: Copy configuration file
+  copy:
+    src: "{{ role_path }}/templates/httpd.conf"
+    dest: /etc/httpd/conf/httpd.conf
+    mode: 0644
+
+- name: Enable httpd service
+  systemd:
+    name: httpd
+    enabled: yes
+
+- name: Install git
+  yum:
+    name: git
+    state: {{ git_version }}
+
+- name: Clone website git repository
+  git:
+    repo: {{ web_gitrepo }}
+    dest: {{ repo_dest }}
+    clone: yes
+
+- name: Test website is accesible
+  uri:
+    url: http://localhost

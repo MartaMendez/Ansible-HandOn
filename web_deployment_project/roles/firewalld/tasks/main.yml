@@ -1,0 +1,14 @@
+- name: Install the {{ version }} of firewalld
+  yum:
+    name: firewalld
+    state: {{ version }}
+
+- name: Start firewalld service
+  service:
+    name: firewalld
+    state: started
+
+- name: Enable firewalld service
+  systemd:
+    name: firewalld
+    enabled: yes

@@ -1,0 +1,16 @@
+- name: Deploy kodekloud ecommerce website firewall
+  hosts: all_servers
+  roles:
+    - firewalld
+
+- name: Deploy kodekloud ecommerce website database
+  hosts: db_servers
+  roles:
+    - mariadb
+
+- name: Deploy kodekloud ecommerce website web server
+  hosts: web_servers
+  vars:
+        web_gitrepo: https://github.com/kodekloudhub/learning-app-ecommerce.git
+  roles:
+    - httpd_php

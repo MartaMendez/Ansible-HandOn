@@ -1,0 +1,3 @@
+repo_dest: /var/ww/html
+deirectoryindex: index.php
+port: 80/tcp

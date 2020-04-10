@@ -1,0 +1,12 @@
+ansible-target1 ansible_host=172.20.10.11 ansible_ssh_pass=osboxes.org
+ansible-target2 ansible_host=172.20.10.13 ansible_ssh_pass=osboxes.org
+
+[all_servers]
+ansible-target1
+ansible-target2
+
+[db_servers]
+ansible-target1
+
+[web_servers]
+ansible-target2
