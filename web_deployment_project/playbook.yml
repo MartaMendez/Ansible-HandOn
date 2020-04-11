@@ -2,15 +2,25 @@
   hosts: all_servers
   roles:
     - firewalld
+  become: true
 
 - name: Deploy kodekloud ecommerce website database
   hosts: db_servers
+  vars:
+    web_host: 172.20.10.13
   roles:
     - mariadb
+  become: true
 
 - name: Deploy kodekloud ecommerce website web server
   hosts: web_servers
   vars:
         web_gitrepo: https://github.com/kodekloudhub/learning-app-ecommerce.git
+        db_host: 172.20.10.6
+        db_port: 3306
+        db_name: ecomdb
+        db_user: ecomuser
+        db_password: ecompassword
   roles:
     - httpd_php
+  become: true

@@ -1,5 +1,14 @@
-port: 80/tcp
+httpd_port: 80/tcp
+
 httpd_version: latest
 php_version: latest
 phpmysql_version: latest
 git_version: latest
+
+var: /var
+etc: /etc
+httpconf_path: httpd/conf
+httpconf: httpd.conf
+repo_dest: www/html
+
+directoryindex: index.php

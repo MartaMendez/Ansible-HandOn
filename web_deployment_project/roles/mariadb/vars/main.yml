@@ -1,4 +1,5 @@
-
 db_name: ecomdb
 db_user: ecomuser
 db_password: ecompassword
+
+db_load_script: db-load-script.sql

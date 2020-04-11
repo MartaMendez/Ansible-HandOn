@@ -1,39 +1,63 @@
-- name: Install the {{ version }} of mariadb
+- name: Install the {{ version }} version of mariadb
   yum:
-    name: mariadb-server
-    state: {{ version }}
+    name:
+      - mariadb-server
+      - MySQL-python
+    state: "{{ version }}"
+    update_cache: yes
 
 - name: Copy configuration file
-  copy:
-    src: "{{ role_path }}/templates/my.cnf"
-    dest: /etc/my.cnf
-    mode: 0644
+  template:
+    src: "{{ conffile }}.j2"
+    dest: "{{ etc }}/{{ conffile }}"
+    mode: 0777
 
 - name: Start mariadb service
   service:
-    name: mariadb-server
-    state: started
+    name: mariadb
+    state: restarted
+    enabled: yes
 
 - name: Enable mariadb service
   systemd:
-    name: mariadb-server
+    name: mariadb
     enabled: yes
 
-- name: Configure firewall for mariadb
+- name: Configure firewall
   firewalld:
     permanent: yes
-    zone: pubic
-    port: {{ port }}
+    #zone: pubic
+    port: "{{ mysql_port }}"
     immediate: yes
+    state: enabled
+
+- name: Create destination path if it doesn't exist
+  file:
+    path: "{{ etc }}/{{ ansible_root_path }}"
+    state: directory
+    mode: 0777
+
+- name: Copy db-load-script for database data creation
+  copy:
+    src: "{{ role_path }}/files/{{ db_load_script }}"
+    dest: "{{ etc }}/{{ ansible_root_path }}/{{ db_load_script }}"
+    mode: 0777
 
 - name: Create database name {{ db_name }}
   mysql_db:
-    name: {{ db_name }}
+    name: "{{ db_name }}"
+    state: import
+    target: "{{ etc }}/{{ ansible_root_path }}/{{ db_load_script }}"
+
+- name: Create database user {{ db_user }} grant all database privileges
+  mysql_user:
+    name: "{{ db_user }}"
+    password: "{{ db_password }}"
+    priv: '*.*:ALL,GRANT'
+    host: "{{ web_host }}"
     state: present
 
-- name: Create database user {{ db_user }} with all database privileges
-  mysql_user:
-    name: {{ db_user }}
-    password: {{ db_password }}
-    priv: '*.*:ALL'
-    state: present
+- name: Copy db-load-script
+  copy:
+    src: "{{ role_path }}/files/{{ db_load_script }}"
+    dest: "{{ etc }}/{{ ansible_root_path }}/{{ db_load_script }}"

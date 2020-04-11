@@ -1,0 +1,13 @@
+[client]
+socket = "{{ var }}/{{ datadir }}/{{ mysql_socket }}"
+
+[mysqld]
+datadir = "{{ var }}/{{ datadir }}"
+socket = "{{ var }}/{{ datadir }}/{{ mysql_socket }}"
+symbolic-links = 0
+
+[mysqld_safe]
+log-error = "{{ var }}/{{ log_error_path }}"
+pid-file = "{{ var }}/{{ pid_path }}"
+
+!includedir "{{ etc }}/{{ confdfile }}"

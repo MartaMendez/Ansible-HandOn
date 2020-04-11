@@ -1,51 +1,63 @@
-- name: Install the {{ version }} of httpd (apache)
+- name: Install the {{ httpd_version }} version of httpd (apache), php and php-mysql
   yum:
-    name: httpd
-    state: {{ httpd_version }}
+    name:
+      - httpd
+      - php
+      - php-mysql
+  update_cache: yes
 
-- name: Install the {{ version }} of php
-  yum:
-    name: php
-    state: {{ php_version }}
-
-- name: Install the {{ version }} of php-mysql
-  yum:
-    name: php-mysql
-    state: {{ phpmysql_version }}
-
-- name: Configure firewall for httpd php phpmysql
+- name: Configure firewall
   firewalld:
     permanent: yes
-    zone: pubic
-    port: {{ port }}
+    port: "{{ httpd_port }}"
     immediate: yes # reload firewall after setting port
+    state: enabled
 
 - name: Start httpd service
   service:
     name: httpd
     state: started
 
-- name: Copy configuration file
+- name: Copy configuration file (httpd.conf)
   copy:
-    src: "{{ role_path }}/templates/httpd.conf"
-    dest: /etc/httpd/conf/httpd.conf
-    mode: 0644
+    src: "{{ role_path }}/files/{{ httpconf }}"
+    dest: "{{ etc }}/{{ httpconf_path }}/{{ httpconf }}"
+    mode: 0777
 
 - name: Enable httpd service
   systemd:
     name: httpd
     enabled: yes
 
-- name: Install git
+- name: Install {{ git_version }} git version
   yum:
     name: git
-    state: {{ git_version }}
+    state: "{{ git_version }}"
+
+- name: Create repository destination path if it doesn't exist
+  file:
+    path: "{{ var }}/{{ repo_dest }}"
+    state: directory
+    mode: 0777
 
 - name: Clone website git repository
   git:
-    repo: {{ web_gitrepo }}
-    dest: {{ repo_dest }}
+    repo: "{{ web_gitrepo }}"
+    dest: "{{ var }}/{{ repo_dest }}"
     clone: yes
+    force: yes
+
+- name: Copy index.php file to web repository
+  template:
+    src: "{{ directoryindex }}.j2"
+    dest: "{{ var }}/{{ repo_dest }}/{{ directoryindex }}"
+    mode: 0644
+
+- name: Set httpd_can_network_connect_db flag on and keep it persistent across reboots
+  seboolean:
+    name: httpd_can_network_connect_db
+    state: yes
+    persistent: yes
 
 - name: Test website is accesible
   uri:
