@@ -3,13 +3,11 @@ Ansible playbook to deploy a website on a remote server.
 
 ## Pre requisites
 1) At least three connected hosts:
-    * one local
-    * two remotes:
+    * one local server
+    * two remotes servers:
          - database server
          - web server
 2) [Install ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#installation-guide) on the local host
-
-2) Website code available in github
 
 3) To set up the database server, the following should be defined:
     * databases to create
