@@ -1,12 +1,13 @@
 # Website deployment project
-Ansible project to deploy a website on a remote server. 
+Ansible playbook to deploy a website on a remote server. 
 
 ## Pre requisites
 1) At least three connected hosts:
-    * one with ansible
+    * one local
     * two remotes:
          - database server
          - web server
+2) [Install ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#installation-guide) on the local host
 
 2) Website code available in github
 
@@ -21,3 +22,6 @@ Ansible project to deploy a website on a remote server.
     * sql file to create tables and load database
 
 ## Run
+```bash
+ansible-playbook playbook.yml -i inventory.txt
+```
