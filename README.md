@@ -5,8 +5,8 @@ Ansible playbook to deploy a website on a remote server.
 1) At least three connected hosts (CentOS7):
     * one local server
     * two remotes servers:
-         - database server (mariadb)
-         - web server
+         - database server (mariaDB)
+         - web server (PHP)
 2) [Install ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#installation-guide) on the local host
 
 3) To set up the database server, the following should be defined:
@@ -15,7 +15,7 @@ Ansible playbook to deploy a website on a remote server.
     * sql file to create tables and load database
 
 4) To set up the web server, the following should be defined:
-    * databases to access
+    * database to access
     * users to access those databases and their passwords
     * sql file to create tables and load database
 
