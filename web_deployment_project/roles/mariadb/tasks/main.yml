@@ -8,8 +8,8 @@
 
 - name: Copy configuration file
   template:
-    src: "{{ conffile }}.j2"
-    dest: "/etc/{{ conffile }}"
+    src: "my.cnf.j2"
+    dest: "/etc/my.cnf"
     mode: 0777
 
 - name: Start mariadb service
@@ -33,21 +33,21 @@
 
 - name: Create destination path if it doesn't exist
   file:
-    path: "/etc/{{ ansible_root_path }}"
+    path: "{{ dest_path }}"
     state: directory
     mode: 0777
 
 - name: Copy db-load-script for database data creation
   copy:
     src: "{{ role_path }}/files/{{ db_load_script }}"
-    dest: "/etc/{{ ansible_root_path }}/{{ db_load_script }}"
+    dest: "{{ dest_path }}/{{ db_load_script }}"
     mode: 0777
 
 - name: Create database name {{ db_name }}
   mysql_db:
     name: "{{ db_name }}"
     state: import
-    target: "/etc/{{ ansible_root_path }}/{{ db_load_script }}"
+    target: "{{ dest_path }}/{{ db_load_script }}"
 
 - name: Create database user {{ db_user }} grant all database privileges
   mysql_user:
@@ -60,4 +60,4 @@
 - name: Copy db-load-script
   copy:
     src: "{{ role_path }}/files/{{ db_load_script }}"
-    dest: "/etc/{{ ansible_root_path }}/{{ db_load_script }}"
+    dest: "{{ dest_path }}/{{ db_load_script }}"
