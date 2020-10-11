@@ -6,7 +6,4 @@ phpmysql_version: latest
 git_version: latest
 
 httpconf_path: /etc/httpd/conf
-httpconf: httpd.conf
 repo_dest: www/html
-
-directoryindex: index.php
