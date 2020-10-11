@@ -22,6 +22,22 @@ Ansible playbook to deploy a website on a remote server.
 5) Website code on a git repo.
 
 ## Setup
+User should define variables before deploying:
+* [Firewall variables](https://github.com/MegandM/website-deployment/blob/development/web_deployment_project/roles/firewalld/vars/main.yml). (Check [default]() values)
+   + firewall version.
+* [Web server](https://github.com/MegandM/website-deployment/blob/development/web_deployment_project/roles/httpd_php/vars/main.yml). (Check [defualt](https://github.com/MegandM/website-deployment/blob/development/web_deployment_project/roles/httpd_php/defaults/main.yml) values)
+   + port
+   + httpd, php, php mysql and git versions
+   + httpd.conf destination path
+   + website repo 
+* [Database server](). (Check [default] values)
+   + mariaDB version
+   + port
+   + database user
+   + database name
+   + database load script name
+   + database load script detination path
+   
 
 ## Run
 ```bash
