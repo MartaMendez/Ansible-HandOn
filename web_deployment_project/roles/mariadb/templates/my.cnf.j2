@@ -1,13 +1,13 @@
 [client]
-socket = "{{ var }}/{{ datadir }}/{{ mysql_socket }}"
+socket = "{{ datadir }}/{{ mysql_socket }}"
 
 [mysqld]
-datadir = "{{ var }}/{{ datadir }}"
-socket = "{{ var }}/{{ datadir }}/{{ mysql_socket }}"
+datadir = "{{ datadir }}"
+socket = "{{ datadir }}/{{ mysql_socket }}"
 symbolic-links = 0
 
 [mysqld_safe]
-log-error = "{{ var }}/{{ log_error_path }}"
-pid-file = "{{ var }}/{{ pid_path }}"
+log-error = "{{ log_error_path }}"
+pid-file = "{{ pid_path }}"
 
-!includedir "{{ etc }}/{{ confdfile }}"
+!includedir "{{ confdfile_path }}"
