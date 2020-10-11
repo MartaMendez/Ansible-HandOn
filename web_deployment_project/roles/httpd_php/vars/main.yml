@@ -1,3 +1,8 @@
 repo_dest: /var/www/html
-directoryindex: index.php
+
+httpd_version: latest
+php_version: latest
+phpmysql_version: latest
+git_version: latest
+
 httpd_port: 80/tcp
