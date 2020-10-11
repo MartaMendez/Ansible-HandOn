@@ -23,14 +23,14 @@ Ansible playbook to deploy a website on a remote server.
 
 ## Setup
 User should define variables before deploying:
-* [Firewall variables](https://github.com/MegandM/website-deployment/blob/development/web_deployment_project/roles/firewalld/vars/main.yml). (Check [default]() values)
-   + firewall version.
-* [Web server](https://github.com/MegandM/website-deployment/blob/development/web_deployment_project/roles/httpd_php/vars/main.yml). (Check [defualt](https://github.com/MegandM/website-deployment/blob/development/web_deployment_project/roles/httpd_php/defaults/main.yml) values)
+* [Firewall variables](https://github.com/MegandM/website-deployment/blob/development/web_deployment_project/roles/firewalld/vars/main.yml)
+   + firewall version
+* [Web server variables](https://github.com/MegandM/website-deployment/blob/development/web_deployment_project/roles/httpd_php/vars/main.yml). (Check [defualt](https://github.com/MegandM/website-deployment/blob/development/web_deployment_project/roles/httpd_php/defaults/main.yml) values)
    + port
    + httpd, php, php mysql and git versions
    + httpd.conf destination path
    + website repo 
-* [Database server](). (Check [default](https://github.com/MegandM/website-deployment/blob/development/web_deployment_project/roles/mariadb/defaults/main.yml) values)
+* [Database server variables](https://github.com/MegandM/website-deployment/blob/development/web_deployment_project/roles/mariadb/vars/main.yml). (Check [default](https://github.com/MegandM/website-deployment/blob/development/web_deployment_project/roles/mariadb/defaults/main.yml) values)
    + port
    + mariaDB version
    + database user
