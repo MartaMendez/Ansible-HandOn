@@ -30,7 +30,7 @@ User should define variables before deploying:
    + httpd, php, php mysql and git versions
    + httpd.conf destination path
    + website repo 
-* [Database server](). (Check [default] values)
+* [Database server](). (Check [default](https://github.com/MegandM/website-deployment/blob/development/web_deployment_project/roles/mariadb/defaults/main.yml) values)
    + mariaDB version
    + port
    + database user
