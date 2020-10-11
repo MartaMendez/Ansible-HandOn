@@ -2,7 +2,6 @@ mysql_port: 3306/tcp
 
 version: latest
 
-etc: /etc
 var: /var
 datadir: lib/mysql
 log_error_path: log/mariadb/mariadb.log
