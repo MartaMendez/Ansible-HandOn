@@ -20,8 +20,8 @@
 
 - name: Copy configuration file (httpd.conf)
   copy:
-    src: "{{ role_path }}/files/{{ httpconf }}"
-    dest: "{{ etc }}/{{ httpconf_path }}/{{ httpconf }}"
+    src: "{{ role_path }}/files/httpd.conf"
+    dest: "{{ httpconf_path }}/httpd.conf"
     mode: 0777
 
 - name: Enable httpd service
@@ -49,8 +49,8 @@
 
 - name: Copy index.php file to web repository
   template:
-    src: "{{ directoryindex }}.j2"
-    dest: "{{ repo_dest }}/{{ directoryindex }}"
+    src: "index.php.j2"
+    dest: "{{ repo_dest }}/index.php"
     mode: 0644
 
 - name: Set httpd_can_network_connect_db flag on and keep it persistent across reboots
