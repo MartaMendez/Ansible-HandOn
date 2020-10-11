@@ -2,12 +2,13 @@ mysql_port: 3306/tcp
 
 version: latest
 
-var: /var
-datadir: lib/mysql
-log_error_path: log/mariadb/mariadb.log
+datadir: /var/lib/mysql
+
+log_error_path: /var/log/mariadb/mariadb.log
 mysql_socket: mysql.sock
-pid_path: run/mariadb/mariadb.pid
+pid_path: /var/run/mariadb/mariadb.pid
+confdfile_path: /etc/my.cnf.d
 
 dest_path: /etc/ansible
 
-confdfile: my.cnf.d
+
