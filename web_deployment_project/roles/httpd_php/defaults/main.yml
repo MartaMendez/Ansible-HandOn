@@ -5,8 +5,7 @@ php_version: latest
 phpmysql_version: latest
 git_version: latest
 
-etc: /etc
-httpconf_path: httpd/conf
+httpconf_path: /etc/httpd/conf
 httpconf: httpd.conf
 repo_dest: www/html
 
