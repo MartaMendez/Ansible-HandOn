@@ -2,6 +2,7 @@ db_name: ecomdb
 db_user: ecomuser
 db_password: ecompassword
 
+dest_path: /etc/ansible
 db_load_script: db-load-script.sql
 
 mysql_port: 3306/tcp
