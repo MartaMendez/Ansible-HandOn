@@ -3,3 +3,5 @@ db_user: ecomuser
 db_password: ecompassword
 
 db_load_script: db-load-script.sql
+
+mysql_port: 3306/tcp
