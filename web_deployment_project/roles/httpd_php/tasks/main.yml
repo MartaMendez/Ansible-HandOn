@@ -36,21 +36,21 @@
 
 - name: Create repository destination path if it doesn't exist
   file:
-    path: "{{ var }}/{{ repo_dest }}"
+    path: "{{ repo_dest }}"
     state: directory
     mode: 0777
 
 - name: Clone website git repository
   git:
     repo: "{{ web_gitrepo }}"
-    dest: "{{ var }}/{{ repo_dest }}"
+    dest: "{{ repo_dest }}"
     clone: yes
     force: yes
 
 - name: Copy index.php file to web repository
   template:
     src: "{{ directoryindex }}.j2"
-    dest: "{{ var }}/{{ repo_dest }}/{{ directoryindex }}"
+    dest: "{{ repo_dest }}/{{ directoryindex }}"
     mode: 0644
 
 - name: Set httpd_can_network_connect_db flag on and keep it persistent across reboots
