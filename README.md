@@ -25,7 +25,7 @@ Ansible playbook to deploy a website on a remote server.
 User should define variables before deploying:
 * [Firewall variables](https://github.com/MegandM/website-deployment/blob/development/web_deployment_project/roles/firewalld/vars/main.yml)
    + firewall version
-* [Web server variables](https://github.com/MegandM/website-deployment/blob/development/web_deployment_project/roles/httpd_php/vars/main.yml). (Check [defualt](https://github.com/MegandM/website-deployment/blob/development/web_deployment_project/roles/httpd_php/defaults/main.yml) values)
+* [Web server variables](https://github.com/MegandM/website-deployment/blob/development/web_deployment_project/roles/httpd_php/vars/main.yml). (Check [default](https://github.com/MegandM/website-deployment/blob/development/web_deployment_project/roles/httpd_php/defaults/main.yml) values)
    + port
    + httpd, php, php mysql and git versions
    + httpd.conf destination path
