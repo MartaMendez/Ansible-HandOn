@@ -5,7 +5,6 @@ php_version: latest
 phpmysql_version: latest
 git_version: latest
 
-var: /var
 etc: /etc
 httpconf_path: httpd/conf
 httpconf: httpd.conf
